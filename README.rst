@@ -2,7 +2,7 @@ nova-vnc-cert
 ==============
 
 This is an ansible playbook to deploy vnc certificates and keys to be used by
-libvirt and nova-novncproxy.
+libvirt and nova-novncproxy in TACO platform.
 
 Its purpose is to prevent VNC console connection from clients 
 without certificate or with invalid certificate.
