@@ -1,0 +1,32 @@
+---
+# VeNCrypt variables
+vencrypt_dir: "/tmp/vencrypt"
+vencrypt_days: 36500
+vencrypt_ca: {
+  key: "{{ vencrypt_dir }}/ca-key.pem", 
+  csr: "{{ vencrypt_dir }}/ca-csr.pem", 
+  crt: "{{ vencrypt_dir }}/ca-cert.pem",
+  info: "{{ vencrypt_dir }}/ca.info", 
+  cn: "iOrchard",
+}
+vencrypt_server: {
+  key: "{{ vencrypt_dir }}/server-key.pem", 
+  csr: "{{ vencrypt_dir }}/server-csr.pem", 
+  crt: "{{ vencrypt_dir }}/server-cert.pem", 
+  info: "{{ vencrypt_dir }}/server.info",
+  org: "iOrchard",
+  cn: "vnc-tls-server",
+}
+vencrypt_client: {
+  key: "{{ vencrypt_dir }}/client-key.pem", 
+  csr: "{{ vencrypt_dir }}/client-csr.pem", 
+  crt: "{{ vencrypt_dir }}/client-cert.pem", 
+  info: "{{ vencrypt_dir }}/client.info",
+  country: "KR",
+  state: "Gangwon-Do",
+  locality: "Wonju-Si",
+  org: "iOrchard",
+  cn: "vnc-tls-client",
+}
+kubectl_cmd: "/usr/local/bin/kubectl"
+...

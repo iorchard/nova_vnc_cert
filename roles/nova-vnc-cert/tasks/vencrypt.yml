@@ -1,0 +1,53 @@
+---
+- name: VeNCrypt | create CA private key
+  shell: >-
+    certtool --generate-privkey > {{ vencrypt_ca.key }}
+
+- name: VeNCrypt | template ca.info 
+  template:
+    dest: "{{ vencrypt_ca.info }}"
+    src: "ca.info.j2"
+
+- name: VeNCrypt | create CA certificate
+  command: >-
+    certtool --generate-self-signed \
+      --load-privkey {{ vencrypt_ca.key }} \
+      --template {{ vencrypt_ca.info }} \
+      --outfile {{ vencrypt_ca.crt }}
+
+- name: VeNCrypt | create server key
+  shell: >-
+    certtool --generate-privkey > {{ vencrypt_server.key }}
+
+- name: VeNCrypt | template server.info 
+  template:
+    dest: "{{ vencrypt_server.info }}"
+    src: "server.info.j2"
+
+- name: VeNCrypt | create server certificate
+  command: >-
+    certtool --generate-certificate \
+        --load-ca-certificate {{ vencrypt_ca.crt }} \
+        --load-ca-privkey {{ vencrypt_ca.key }} \
+        --load-privkey {{ vencrypt_server.key }} \
+        --template {{ vencrypt_server.info }} \
+        --outfile {{ vencrypt_server.crt }}
+
+- name: VeNCrypt | create client key
+  shell: >-
+    certtool --generate-privkey > {{ vencrypt_client.key }}
+
+- name: VeNCrypt | template client.info 
+  template:
+    dest: "{{ vencrypt_client.info }}"
+    src: "client.info.j2"
+
+- name: VeNCrypt | create client certificate
+  command: >-
+    certtool --generate-certificate \
+        --load-ca-certificate {{ vencrypt_ca.crt }} \
+        --load-ca-privkey {{ vencrypt_ca.key }} \
+        --load-privkey {{ vencrypt_client.key }} \
+        --template {{ vencrypt_client.info }} \
+        --outfile {{ vencrypt_client.crt }}
+...

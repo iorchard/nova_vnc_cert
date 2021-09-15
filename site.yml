@@ -1,0 +1,8 @@
+---
+- name: Deploy vnc certificates for nova-novncproxy and libvirt
+  hosts: localhost
+  connection: local
+  any_errors_fatal: true
+  roles:
+    - {role: nova-vnc-cert, tags: nova-vnc-cert}
+...

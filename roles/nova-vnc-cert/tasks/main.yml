@@ -1,0 +1,27 @@
+---
+- name: Main | include pre-check tasks
+  include_tasks: "pre_check.yml"
+
+- name: Main | install gnutls-utils
+  package:
+    name: "gnutls-utils"
+    state: present
+  become: true
+
+- name: Main | create temporary certificate directory
+  file:
+    path: "{{ vencrypt_dir }}"
+    state: directory
+    mode: "0700"
+
+- name: Main | include VeNCrypt tasks
+  include_tasks: "vencrypt.yml"
+
+- name: Main | include vnc_secret tasks
+  include_tasks: "vnc_secret.yml"
+
+- name: Main | remove temporary certificate directory
+  file:
+    path: "{{ vencrypt_dir }}"
+    state: absent
+...
