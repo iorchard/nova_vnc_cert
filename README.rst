@@ -43,7 +43,7 @@ taco/inventory/<sitename>/openstack-manifest.yaml
 All plus sign(+) is the added lines and minus sign(-) is the deleted or
 comment-out lines.
 
-Go to libvirt section and change libvirt image to use gnutls support
+Go to libvirt section and change libvirt image to use gnutls support.::
 
     values:
       release_group: null
