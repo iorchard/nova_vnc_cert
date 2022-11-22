@@ -3,5 +3,6 @@
   command: >-
     {{ kubectl_cmd }} cluster-info
   register: k8s_info
+  become: true
   failed_when: k8s_info.rc != 0
 ...
