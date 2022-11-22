@@ -28,5 +28,5 @@ vencrypt_client: {
   org: "iOrchard",
   cn: "vnc-tls-client",
 }
-kubectl_cmd: "/usr/local/bin/kubectl"
+kubectl_cmd: "kubectl"
 ...
